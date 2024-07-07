@@ -42,7 +42,7 @@ jobs:
       - run: sudo apt install -y git python3-dev
       - run: pip install -r ./requirements.txt
       - run: python3 warodai-to-edict.py
-      - run: mv ./warodai.txt ./public/
+      - run: mv ./output.txt ./public/warodai-edict.txt
 
       - name: Set version env variable
         run: echo "version=$(date '+%Y%m%dT%H%M%S')" >> $GITHUB_ENV
@@ -51,7 +51,7 @@ jobs:
 
       - run: ls ./public/
       - name: Zip folder
-        run: zip -r -q -j -9 ./warodai.zip ./public/
+        run: zip -r -q -j -9 ./warodai-edict.zip ./public/
 
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
@@ -69,4 +69,4 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            warodai.zip
+            warodai-edict.zip
